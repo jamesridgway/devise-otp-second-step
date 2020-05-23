@@ -1,4 +1,4 @@
-# device-otp-u2f
+# Devise OTP/U2F
 ![Tests](https://github.com/jamesridgway/devise-otp-u2f/workflows/Tests/badge.svg?branch=master)
 
 This is an example project that demonstrates how to implement OTP and U2F two-factor authentication in devise, using a
