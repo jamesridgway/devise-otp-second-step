@@ -12,7 +12,8 @@ jobs:
           ruby-version: 2.5
       - name: Install dependencies
         run: |
-          apt-get install -y libsqlite3-dev
+          sudo apt update
+          sudo apt install -y libsqlite3-dev
           bundle install
       - name: Rspec
         run: bundle exec rspec
