@@ -10,10 +10,12 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.5
-      - name: Install dependencies
+      - name: Bundle
         run: |
           sudo apt update
           sudo apt install -y libsqlite3-dev
           bundle install
+      - name: Yarn
+        run: ./bin/rails yarn:install
       - name: Rspec
         run: bundle exec rspec
