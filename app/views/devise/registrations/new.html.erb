@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">Signup</div>
+  <div class="card-body">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.input :email, autofocus: true, autocomplete: 'email' %>
+      <%= f.input :password, autocomplete: 'current-password' %>
+      <%= f.input :password_confirmation, autocomplete: "new-password" %>
+      <div class="actions">
+        <%= f.submit 'Signup', class: 'btn btn-primary mt-2' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

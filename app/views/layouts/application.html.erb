@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Devise OTP/U2F Demo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Devise OTP/U2F Demo</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: {confirm: 'Are you sure?'}, class: 'nav-link' %>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link' do %>
+                  <span data-feather="home"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to edit_user_registration_path, class: 'nav-link' do %>
+                  <span data-feather="settings"></span>
+                  Account Settings
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, data: {confirm: 'Are you sure?'}, class: 'nav-link' do %>
+                  <span data-feather="log-out"></span>
+                  Logout
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key) %>">
+              <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <%= value.to_s.html_safe %>
+            </div>
+          <% end %>
+          <div class="mt-3 mb-5"><%= yield %></div>
+        </main>
+      </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+  </body>
+</html>

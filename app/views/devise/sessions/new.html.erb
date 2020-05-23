@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">Login</div>
+  <div class="card-body">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.input :email, autofocus: true, autocomplete: 'email' %>
+      <%= f.input :password, autocomplete: 'current-password' %>
+      <% if devise_mapping.rememberable? %>
+        <%= f.input :remember_me, as: :boolean %>
+      <% end %>
+      <div class="actions">
+        <%= f.submit 'Login', class: 'btn btn-primary mt-2' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
