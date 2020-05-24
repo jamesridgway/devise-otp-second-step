@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
 
-module DeviseOtpU2f
+module DeviseOtpSecondStep
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
