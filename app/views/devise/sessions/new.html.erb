@@ -4,7 +4,6 @@
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= f.input :email, autofocus: true, autocomplete: 'email' %>
       <%= f.input :password, autocomplete: 'current-password' %>
-      <%= f.input :otp_attempt, label: 'OTP' %>
       <% if devise_mapping.rememberable? %>
         <%= f.input :remember_me, as: :boolean %>
       <% end %>
