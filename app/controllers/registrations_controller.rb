@@ -1,3 +1,3 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout user_signed_in? ? 'application' : 'login'
+  layout "login", only: [:new]
 end

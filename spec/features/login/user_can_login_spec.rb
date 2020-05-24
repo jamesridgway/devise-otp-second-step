@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'User without 2fa can log in' do
-  scenario 'Valid user without 2fa can login' do
+feature 'User without any two factor can log in' do
+  scenario 'Valid user without any two factor can login' do
     # Given I am a user that does not have 2fa enabled
     user = create(:user)
 

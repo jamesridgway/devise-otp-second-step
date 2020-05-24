@@ -4,11 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.8'
 
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'devise'
+gem 'devise-two-factor'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
+gem 'rqrcode'
 gem 'sass-rails', '>= 6'
 gem 'simple_form'
 gem 'simplecov', require: false, group: :test
@@ -20,6 +22,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 4.0.0'
 end
 
