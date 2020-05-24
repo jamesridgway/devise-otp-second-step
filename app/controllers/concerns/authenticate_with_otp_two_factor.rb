@@ -33,7 +33,7 @@ module AuthenticateWithOtpTwoFactor
 
       remember_me(user) if user_params[:remember_me] == '1'
       user.save!
-      sign_in(user, message: :two_factor_authenticated, event: :authentication)
+      sign_in(user, event: :authentication)
     else
       flash.now[:alert] = 'Invalid two-factor code.'
       prompt_for_otp_two_factor(user)
