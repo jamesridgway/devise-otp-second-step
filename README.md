@@ -3,3 +3,5 @@
 
 This is an example project that demonstrates how to implement OTP two-factor authentication in devise so that the user
 is asked for their OTP code as a second login step.
+
+![OTP as second-step](./devise-otp-second-step.png)
