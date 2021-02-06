@@ -25,7 +25,7 @@ Capybara.register_driver :selenium do |app|
 
   opts = {browser: :chrome, options: options}
   opts[:service] = Selenium::WebDriver::Service.chrome(path: '/bin/chromedriver') if File.exist?('/bin/chromedriver')
-  Capybara::Selenium::Driver.new(app, opts)
+  Capybara::Selenium::Driver.new(app, **opts)
 end
 
 Capybara.server = :puma, {Silent: true}
