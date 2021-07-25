@@ -5,11 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [3.0.x, 2.7.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: ${{ matrix.ruby-version }}
       - name: Bundle
         run: |
           sudo apt update
