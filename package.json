@@ -2,17 +2,17 @@
   "name": "devise_otp_u2f",
   "private": true,
   "dependencies": {
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
+    "@rails/actioncable": "^6.1.4",
+    "@rails/activestorage": "^6.1.4",
+    "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "5.4.2",
-    "bootstrap": "4.3.1",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1",
+    "bootstrap": "5.1.1",
+    "jquery": "^3.6.0",
+    "@popperjs/core": "^2.10.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.2.1"
   }
 }
