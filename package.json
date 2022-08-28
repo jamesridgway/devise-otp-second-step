@@ -2,11 +2,12 @@
   "name": "devise_otp_u2f",
   "private": true,
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "@rails/actioncable": "^6.1.6",
     "@rails/activestorage": "^6.1.6",
     "@rails/ujs": "^6.1.6",
     "@rails/webpacker": "^5.4.3",
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^5.2.0",
     "jquery": "^3.6.1",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"

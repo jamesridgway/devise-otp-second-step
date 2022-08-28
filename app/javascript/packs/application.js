@@ -15,9 +15,9 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
+require("@popperjs/core")
 import 'bootstrap'
 
-document.addEventListener("turbolinks:load", () => {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+// document.addEventListener("turbolinks:load", () => {
+//     $('[data-toggle="tooltip"]').tooltip()
+// })

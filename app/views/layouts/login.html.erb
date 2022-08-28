@@ -14,11 +14,9 @@
       <div class="row">
         <div class="col-12">
           <% flash.each do |key, value| %>
-            <div class="<%= flash_class(key) %>">
-              <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="<%= flash_class(key) %> alert-dismissible" role="alert">
               <%= value.to_s.html_safe %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           <% end %>
         </div>
