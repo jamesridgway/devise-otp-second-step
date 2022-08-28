@@ -6,7 +6,7 @@ gem 'devise'
 gem 'devise-two-factor'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.6.5'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'rexml'
 gem 'rqrcode'
@@ -22,7 +22,7 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 4.0.0'
+  gem 'rspec-rails', '~> 5.1.2'
 end
 
 group :development do
