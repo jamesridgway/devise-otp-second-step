@@ -64,7 +64,7 @@ class TwoFactorSettingsController < ApplicationController
   def destroy
     unless current_user.valid_password?(disable_2fa_params[:password])
       flash.now[:alert] = 'Incorrect password'
-      return render :confirm_disable, status: :unprocessable_entity
+      return render :confirm_disable, status: :unprocessable_content
     end
 
     if current_user.disable_two_factor!

@@ -31,7 +31,7 @@ module AuthenticateWithOtpTwoFactor
     # Rendered in response to the POST to sessions#create. Turbo discards the
     # body of a 200 on a form submission, so the second-factor prompt has to
     # come back as 422 to be shown at all.
-    render 'devise/sessions/two_factor', status: :unprocessable_entity
+    render 'devise/sessions/two_factor', status: :unprocessable_content
   end
 
   def authenticate_user_with_otp_two_factor(user)

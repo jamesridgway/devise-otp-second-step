@@ -266,7 +266,7 @@ Devise.setup do |config|
   # a 303 redirect or a 4xx/5xx it recognises. Devise's historical defaults of
   # 200 for a re-render and 302 for a redirect leave Turbo with nothing to do, so
   # a failed sign in would silently show the untouched form with no error.
-  config.responder.error_status = :unprocessable_entity
+  config.responder.error_status = :unprocessable_content
   config.responder.redirect_status = :see_other
 
   # ==> OmniAuth
