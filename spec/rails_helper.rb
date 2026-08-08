@@ -39,7 +39,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = [Rails.root.join('spec/fixtures')]
   config.use_transactional_fixtures = true
   config.example_status_persistence_file_path = '.rspec-failures'
   config.infer_spec_type_from_file_location!

@@ -7,8 +7,8 @@ gem 'devise-two-factor', '>= 6.0'
 gem 'importmap-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'propshaft'
-gem 'puma', '~> 5.6.5'
-gem 'rails', '~> 7.0.10'
+gem 'puma', '>= 6.0'
+gem 'rails', '~> 7.1.6'
 gem 'rexml'
 gem 'rqrcode'
 gem 'simple_form'
@@ -20,7 +20,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 5.1.2'
+  gem 'rspec-rails', '>= 6.1'
 end
 
 group :development do

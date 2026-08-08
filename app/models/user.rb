@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :two_factor_authenticatable, :two_factor_backupable,
          otp_backup_code_length: 10, otp_number_of_backup_codes: 10
 
-  serialize :otp_backup_codes, JSON
+  serialize :otp_backup_codes, coder: JSON
 
   attr_accessor :otp_plain_backup_codes
 

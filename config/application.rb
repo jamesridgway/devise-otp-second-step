@@ -10,7 +10,7 @@ Dotenv::Railtie.load
 module DeviseOtpSecondStep
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Keys for the Rails encrypted attribute that devise-two-factor 5+ uses to
     # store the OTP secret. Set here rather than in an initializer because
