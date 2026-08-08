@@ -12,20 +12,20 @@ A step by step guide is available here: [Implementing OTP two-factor authenticat
 
 You can run this example by following the steps below.
 
-1. Run yarn
-
-       yarn install
-
-2. Run bundler
+1. Run bundler
 
        bundle install
 
-3. Setup the database
+2. Setup the database
 
-       rails db:reset
-       rails db:migrate db:seed
+       bin/rails db:reset
+       bin/rails db:migrate db:seed
 
-4. Visit [http://localhost:3000/])(http://localhost:3000/). Default credentials are:
+3. Start the server
+
+       bin/rails server
+
+4. Visit [http://localhost:3000/](http://localhost:3000/). Default credentials are:
 
        Username: admin@example.com
        Password: letmein

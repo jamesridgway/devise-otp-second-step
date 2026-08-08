@@ -17,8 +17,8 @@ FileUtils.chdir APP_ROOT do
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
 
-  # Install JavaScript dependencies
-  # system('bin/yarn')
+  # JavaScript dependencies are vendored under vendor/javascript and pinned in
+  # config/importmap.rb, so there is nothing to install.
 
   # puts "\n== Copying sample files =="
   # unless File.exist?('config/database.yml')

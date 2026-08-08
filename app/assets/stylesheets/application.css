@@ -1,9 +1,3 @@
-/*
- *= require bootstrap
- *= require_tree .
- *= require_self
- */
-
 html, body {
   height: 100%;
 }
@@ -59,4 +53,13 @@ html, body {
 .sidebar-heading {
   font-size: .75rem;
   text-transform: uppercase;
+}
+
+/*
+ * Login
+ */
+body.login {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #FAFAFA;
 }

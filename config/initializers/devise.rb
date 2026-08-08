@@ -261,6 +261,14 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
+  # ==> Hotwire/Turbo configuration
+  # Turbo only replaces the page body for a form submission when the response is
+  # a 303 redirect or a 4xx/5xx it recognises. Devise's historical defaults of
+  # 200 for a re-render and 302 for a redirect leave Turbo with nothing to do, so
+  # a failed sign in would silently show the untouched form with no error.
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
+
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

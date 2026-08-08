@@ -5,8 +5,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'bootstrap.min', 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_importmap_tags %>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Devise OTP/U2F Demo</a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
+      <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'nav-link' %>
     </li>
   </ul>
 </nav>
@@ -36,7 +36,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' do %>
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'nav-link' do %>
               <span data-feather="log-out"></span>
               Logout
             <% end %>
@@ -59,9 +59,5 @@
     </div>
   </div>
 </div>
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-    feather.replace()
-</script>
 </body>
 </html>

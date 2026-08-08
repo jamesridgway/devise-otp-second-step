@@ -4,20 +4,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise-two-factor', '>= 6.0'
+gem 'importmap-rails'
 gem 'jbuilder', '~> 2.7'
-gem 'jquery-rails'
+gem 'propshaft'
 gem 'puma', '~> 5.6.5'
 gem 'rails', '~> 7.0.10'
 gem 'rexml'
 gem 'rqrcode'
-gem 'sass-rails', '>= 6'
 gem 'simple_form'
 gem 'simplecov', require: false, group: :test
-gem 'sprockets-rails'
 gem 'sqlite3', '~> 1.4'
-gem 'turbolinks', '~> 5'
+gem 'turbo-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'webpacker', '~> 5.4.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
