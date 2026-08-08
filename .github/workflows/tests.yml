@@ -24,7 +24,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           # Taken from .ruby-version so the pinned version cannot drift from CI.
-          ruby-version-file: .ruby-version
+          # setup-ruby spells this as a value of ruby-version, not as a separate
+          # ruby-version-file input -- that is actions/setup-node's name for it,
+          # and setup-ruby ignores it with a warning.
+          ruby-version: .ruby-version
           bundler-cache: true
 
       # The two js: true specs drive Chrome. ubuntu-latest ships it along with a
