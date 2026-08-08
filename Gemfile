@@ -16,7 +16,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'dotenv-rails'
   gem 'rspec-rails', '>= 6.1'
 end

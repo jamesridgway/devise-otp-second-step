@@ -84,8 +84,6 @@ GEM
     bootsnap (1.25.0)
       msgpack (~> 1.5)
     builder (3.3.0)
-    byebug (13.0.0)
-      reline (>= 0.6.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -100,6 +98,9 @@ GEM
     connection_pool (3.0.2)
     crass (1.0.7)
     date (3.5.1)
+    debug (1.11.1)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -309,8 +310,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
-  byebug
   capybara (>= 3.39)
+  debug
   devise
   devise-two-factor (>= 6.0)
   dotenv-rails
