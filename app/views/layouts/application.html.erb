@@ -49,7 +49,7 @@
         <div class="col pt-4">
           <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %> alert-dismissible" role="alert">
-              <%= value.to_s.html_safe %>
+              <%= value %>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           <% end %>
