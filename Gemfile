@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
-gem 'devise-two-factor'
+gem 'devise-two-factor', '>= 6.0'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'puma', '~> 5.6.5'
-gem 'rails', '~> 6.1.7', '>= 6.1.7.10'
+gem 'rails', '~> 7.0.10'
 gem 'rexml'
 gem 'rqrcode'
 gem 'sass-rails', '>= 6'
