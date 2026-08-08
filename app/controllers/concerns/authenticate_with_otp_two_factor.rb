@@ -34,13 +34,50 @@ module AuthenticateWithOtpTwoFactor
       # Remove any lingering user data from login
       session.delete(:otp_user_id)
 
+      reset_failed_attempts(user)
       remember_me(user) if user_params[:remember_me] == '1'
       user.save!
       sign_in(user, event: :authentication)
+    elsif register_failed_otp_attempt(user)
+      # The failed guess locked the account, so stop offering the prompt.
+      session.delete(:otp_user_id)
+      redirect_to new_user_session_path, status: :see_other,
+                                         alert: I18n.t('devise.failure.locked')
     else
       flash.now[:alert] = 'Invalid two-factor code.'
       prompt_for_otp_two_factor(user)
     end
+  end
+
+  ##
+  # Count a wrong one-time code against the same budget devise's :lockable gives
+  # wrong passwords, and lock the account once it is spent. Without this the
+  # second factor can be guessed indefinitely: the code is only six digits, and
+  # a session-local counter would not help because an attacker who already has
+  # the password can simply start a new session.
+  #
+  # Returns true when this attempt locked the account.
+  def register_failed_otp_attempt(user)
+    return false unless user.respond_to?(:increment_failed_attempts)
+
+    user.increment_failed_attempts
+    user.lock_access! if user.failed_attempts >= user.class.maximum_attempts
+    user.access_locked?
+  end
+
+  def reset_failed_attempts(user)
+    return unless user.respond_to?(:unlock_access!)
+    return unless user.failed_attempts.to_i.positive?
+
+    user.unlock_access!
+  end
+
+  ##
+  # Guarded with respond_to? so this concern still works in an application that
+  # does not enable :lockable.
+  def user_locked?
+    user = find_user
+    user.respond_to?(:access_locked?) && user.access_locked?
   end
 
   def user_params
@@ -48,11 +85,14 @@ module AuthenticateWithOtpTwoFactor
   end
 
   def find_user
-    if session[:otp_user_id]
-      User.find(session[:otp_user_id])
-    elsif user_params[:email]
-      User.find_by(email: user_params[:email])
-    end
+    return @find_user if defined?(@find_user)
+
+    @find_user =
+      if session[:otp_user_id]
+        User.find(session[:otp_user_id])
+      elsif user_params[:email]
+        User.find_by(email: user_params[:email])
+      end
   end
 
   def otp_two_factor_enabled?

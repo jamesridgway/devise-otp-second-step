@@ -2,6 +2,11 @@ FactoryBot.define do
   factory :user do
     sequence(:email) { |i| "user#{i}@example.com" }
     password { 'letmein' }
+    trait :locked do
+      failed_attempts { User.maximum_attempts }
+      locked_at { Time.current }
+    end
+
     trait :with_otp do
       otp_required_for_login { true }
 
