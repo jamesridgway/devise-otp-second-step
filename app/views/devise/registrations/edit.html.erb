@@ -30,7 +30,7 @@
         <div class="card-body">
           <% if current_user.otp_required_for_login %>
             <p>Two factor authentication is enabled.</p>
-            <p><%= link_to('Disable Two Factor Authentication', two_factor_settings_path, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to disable two factor authentication?' }) %></p>
+            <p><%= link_to('Disable Two Factor Authentication', confirm_disable_two_factor_settings_path, class: 'btn btn-danger') %></p>
           <% else %>
             <p>Two factor authentication is NOT enabled.</p>
             <p><%= link_to('Enable Two Factor Authentication', new_two_factor_settings_path, class: 'btn btn-primary') %></p>

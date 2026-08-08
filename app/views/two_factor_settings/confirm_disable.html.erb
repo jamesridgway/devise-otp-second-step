@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Two Factor Authentication</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Disable Two Factor Authentication
+        </div>
+        <div class="card-body">
+          <p>
+            Disabling two factor authentication leaves your account protected by
+            your password alone, and discards your backup codes. Enter your
+            password to confirm.
+          </p>
+          <%= simple_form_for(:two_fa, url: two_factor_settings_path, method: :delete) do |f| %>
+            <%= f.input :password, label: 'Enter your current password' %>
+            <%= f.submit 'Disable Two Factor Authentication', class: 'btn btn-danger mt-2' %>
+            <%= link_to 'Cancel', edit_user_registration_path, class: 'btn btn-link mt-2' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

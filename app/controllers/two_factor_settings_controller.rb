@@ -42,13 +42,29 @@ class TwoFactorSettingsController < ApplicationController
     current_user.save!
   end
 
+  def confirm_disable
+    return if current_user.otp_required_for_login
+
+    flash[:alert] = 'Two factor authentication is not enabled.'
+    redirect_to edit_user_registration_path
+  end
+
+  # Removing the second factor is exactly the action an attacker who has stolen
+  # a session wants, so it demands the password in the same way enabling it
+  # does. Without that, a hijacked session silently strips the account back to
+  # one factor.
   def destroy
+    unless current_user.valid_password?(disable_2fa_params[:password])
+      flash.now[:alert] = 'Incorrect password'
+      return render :confirm_disable, status: :unprocessable_entity
+    end
+
     if current_user.disable_two_factor!
       flash[:notice] = 'Successfully disabled two factor authentication.'
-      redirect_to edit_user_registration_path
+      redirect_to edit_user_registration_path, status: :see_other
     else
       flash[:alert] = 'Could not disable two factor authentication.'
-      redirect_back fallback_location: root_path
+      redirect_back fallback_location: root_path, status: :see_other
     end
   end
 
@@ -56,6 +72,10 @@ class TwoFactorSettingsController < ApplicationController
 
   def enable_2fa_params
     params.require(:two_fa).permit(:code, :password)
+  end
+
+  def disable_2fa_params
+    params.fetch(:two_fa, {}).permit(:password)
   end
 
 end
