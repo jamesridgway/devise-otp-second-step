@@ -5,7 +5,10 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-Dotenv::Rails.load
+# dotenv-rails is only in the development and test groups, so the constant does
+# not exist in production. Loaded here rather than left to the railtie so that
+# .env is in place before the configuration below reads ENV.
+Dotenv::Rails.load if defined?(Dotenv::Rails)
 
 module DeviseOtpSecondStep
   class Application < Rails::Application
