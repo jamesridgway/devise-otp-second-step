@@ -1,6 +1,10 @@
 module AuthenticateWithOtpTwoFactor
   extend ActiveSupport::Concern
 
+  # How long the half-authenticated state between the password and the code is
+  # allowed to sit around. Without a bound it lasts as long as the session, and
+  # a browser left on the code prompt stays one guess away from signing in.
+  OTP_PENDING_TIMEOUT = 5.minutes
 
   def authenticate_with_otp_two_factor
     user = self.resource = find_user
@@ -23,6 +27,7 @@ module AuthenticateWithOtpTwoFactor
     @user = user
 
     session[:otp_user_id] = user.id
+    session[:otp_pending_since] = Time.current.to_i
     # Rendered in response to the POST to sessions#create. Turbo discards the
     # body of a 200 on a form submission, so the second-factor prompt has to
     # come back as 422 to be shown at all.
@@ -32,7 +37,7 @@ module AuthenticateWithOtpTwoFactor
   def authenticate_user_with_otp_two_factor(user)
     if valid_otp_attempt?(user)
       # Remove any lingering user data from login
-      session.delete(:otp_user_id)
+      clear_otp_session
 
       reset_failed_attempts(user)
       remember_me(user) if user_params[:remember_me] == '1'
@@ -40,7 +45,7 @@ module AuthenticateWithOtpTwoFactor
       sign_in(user, event: :authentication)
     elsif register_failed_otp_attempt(user)
       # The failed guess locked the account, so stop offering the prompt.
-      session.delete(:otp_user_id)
+      clear_otp_session
       redirect_to new_user_session_path, status: :see_other,
                                          alert: I18n.t('devise.failure.locked')
     else
@@ -87,12 +92,31 @@ module AuthenticateWithOtpTwoFactor
   def find_user
     return @find_user if defined?(@find_user)
 
+    clear_expired_otp_session
+
     @find_user =
       if session[:otp_user_id]
-        User.find(session[:otp_user_id])
+        # find_by, not find: the account can be deleted between the password
+        # step and the code step, and a stale session id should start the login
+        # over rather than raise RecordNotFound at the user.
+        User.find_by(id: session[:otp_user_id])
       elsif user_params[:email]
         User.find_by(email: user_params[:email])
       end
+  end
+
+  def clear_expired_otp_session
+    return if session[:otp_user_id].blank?
+
+    started = session[:otp_pending_since]
+    return if started.present? && Time.at(started.to_i) > OTP_PENDING_TIMEOUT.ago
+
+    clear_otp_session
+  end
+
+  def clear_otp_session
+    session.delete(:otp_user_id)
+    session.delete(:otp_pending_since)
   end
 
   def otp_two_factor_enabled?
