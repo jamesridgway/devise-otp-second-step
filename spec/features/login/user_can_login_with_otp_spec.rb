@@ -9,7 +9,7 @@ feature 'User with OTP two factor enabled' do
     click_button 'Login'
 
     # Then I expect to see an error message
-    expect(page).to have_content("Invalid Email or password.")
+    expect(page).to have_content("Invalid email or password.")
   end
   scenario 'cannot login without a valid OTP' do
     # Given I am a user that has OTP two factor authentication enabled
