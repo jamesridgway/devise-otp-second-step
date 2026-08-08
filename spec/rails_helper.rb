@@ -5,7 +5,6 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
-require 'webdrivers/chromedriver'
 require 'rspec/rails'
 require 'factory_bot_rails'
 require 'capybara/rspec'

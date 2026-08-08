@@ -33,8 +33,9 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 3.39'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+  # >= 4.11 bundles Selenium Manager, which resolves chromedriver itself and
+  # replaces the (now retired) webdrivers gem.
+  gem 'selenium-webdriver', '>= 4.11'
 end
