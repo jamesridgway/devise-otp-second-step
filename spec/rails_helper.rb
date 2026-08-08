@@ -17,14 +17,11 @@ Capybara.register_driver :selenium do |app|
   options.add_argument('--headless') unless ENV['NO_HEADLESS']
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-gpu')
-  options.add_argument('--remote-debugging-port=9222')
-  options.add_argument("-user-agent='Capybara Automated Tests'")
-  options.add_argument('--use-fake-device-for-media-stream')
-  options.add_argument('--use-fake-ui-for-media-stream')
+  options.add_argument('--disable-dev-shm-usage')
 
-  opts = {browser: :chrome, options: options}
-  opts[:service] = Selenium::WebDriver::Service.chrome(path: '/bin/chromedriver') if File.exist?('/bin/chromedriver')
-  Capybara::Selenium::Driver.new(app, **opts)
+  # No explicit chromedriver path: Selenium Manager finds one on PATH and
+  # fetches a matching build only if it has to.
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.server = :puma, {Silent: true}

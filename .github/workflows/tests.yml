@@ -7,8 +7,14 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same branch makes an in-flight run redundant.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  test:
+    name: RSpec
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +23,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          # Taken from .ruby-version so the pinned version cannot drift from CI.
           ruby-version-file: .ruby-version
           bundler-cache: true
 
+      # The two js: true specs drive Chrome. ubuntu-latest ships it along with a
+      # matching chromedriver, which Selenium Manager picks up off the PATH.
       - name: Run tests
         run: bundle exec rspec

@@ -5,11 +5,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise-two-factor', '>= 6.0'
 gem 'importmap-rails'
-gem 'jbuilder', '~> 2.7'
 gem 'propshaft'
 gem 'puma', '>= 6.0'
 gem 'rails', '~> 8.1.3'
-gem 'rexml'
 gem 'rqrcode'
 gem 'simple_form'
 gem 'simplecov', require: false, group: :test
