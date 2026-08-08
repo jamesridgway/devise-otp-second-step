@@ -5,12 +5,12 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-Dotenv::Railtie.load
+Dotenv::Rails.load
 
 module DeviseOtpSecondStep
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # Keys for the Rails encrypted attribute that devise-two-factor 5+ uses to
     # store the OTP secret. Set here rather than in an initializer because

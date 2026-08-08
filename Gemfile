@@ -8,12 +8,12 @@ gem 'importmap-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'propshaft'
 gem 'puma', '>= 6.0'
-gem 'rails', '~> 7.2.3'
+gem 'rails', '~> 8.0.4'
 gem 'rexml'
 gem 'rqrcode'
 gem 'simple_form'
 gem 'simplecov', require: false, group: :test
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '>= 2.1'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
       registrations: 'registrations',
       sessions: 'sessions'
   }
-  resource :two_factor_settings, except: [:index, :show]
+  resource :two_factor_settings, except: [:show]
   root 'welcome#index'
 end
